@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Quiz o patronie</title>
+    </head>
+    <body>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <h2 id="info">Witaj w Quzie o Józefie Bemie</h2><br>
+        <input type="text" id="odp"><br>
+        <button id="klik">Podaj odpowiedź</button>
+        <h5><span style="color: red", id="bledna"></span><span style="color: green", id="pop"></span></h5>
+        <h2 id="haslo">Hasło:</h2>
+
+        <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+        <script>
+            var popOdp = 0;
+            var pytaniaIOdp = {
+                "Bem ukończył Aplikacyjną szkołę Inżynierów i Altyrerii w .... roku" : "1811",
+                "Jak nazywał się ojciec patrona?(imię i nazwisko)" : "jędrzej bem",
+                "Jak nazywała się matka patrona?(imię i nazwisko)" : "agnieszka gołuchowska",
+                "Za obronę Gdańska przed wojskami rosyjskimi Bem dostał krzyż ..... ........." : "legii honorowej",
+                "Józef Bem przybył do Warszawy aby wziąć udział w powstaniu listopadowym ...(dzień)(miesiąć,słownie)(rok)...  roku" : "10 marca 1831",
+                "Kiedy była bitwa pod Iganiami?(Dzień.miesięć.rok)" : "10.04.1831",
+                "Bem, po upadku powstania, wyemigrował do ...." : "francji",
+                "Siedmiogród leży na ..(kraj)..?" : "węgrzech",
+                "Generał Józef Bem zmarł w .... roku?" : "1850",
+                "Po śmierci jego prochy spoczeły w ......?" : "tarnowie",
+                "Gratulacje, teraz idźcie z odkytym hasłem do opiekunów stacji" : "67",
+                "GRATULACJEEE!!!! ODANLAZŁEŚ EASTER EGGA" : ""
+            };
+            var pytania = Object.keys(pytaniaIOdp);
+            var haslo = ["p","a","m","i","ę","t","a","m","y ","o"," 67"];;
+
+            function obslugaklik(){
+                var odp = $("#odp").val();
+                odp = odp.toLowerCase();
+                var pyt = pytania[popOdp];
+                if(odp === pytaniaIOdp[pyt]){
+                    $("#haslo").append(haslo[popOdp]);
+                    popOdp++;
+                    $("#info").text(pytania[popOdp]);
+                    console.log(haslo.length);
+                    $("#pop").text("Poprawna odpowiedź");
+                    $("#bledna").text("");
+                }
+                else{
+                     $("#bledna").text("Błędna odpowedź");
+                     $("#pop").text("");
+                }
+            }
+            function witaj(){
+                $("#info").text(pytania[popOdp]);
+            }
+
+            $("button").click(obslugaklik);
+
+            setTimeout(witaj,3000)
+        </script>
+    </body>
+</html>
